@@ -1,7 +1,8 @@
 import React from 'react';
 import NavBar from './NavBar';
 import MainState from '../contexts/mainState';
-import ListBooks from './ListBooks';
+import ListFriends from './ListFriends';
+import AddFriendForm from './AddFriendForm';
 
 export default function MainContainer() {
   return (
@@ -9,7 +10,9 @@ export default function MainContainer() {
       <MainState>
         <NavBar />
         <hr />
-        <ListBooks />
+        <AddFriendForm />
+        <hr />
+        <ListFriends />
       </MainState>
     </div>
   );

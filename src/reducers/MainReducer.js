@@ -1,7 +1,5 @@
 export const mainReducer = (state, action) => {
   switch (action.type) {
-    case 'INITIAL_STATE':
-      return [...action.data];
     case 'ADD_FRIEND':
       const newFriend = action.payload;
       const afterAddState = state.concat([newFriend]);
