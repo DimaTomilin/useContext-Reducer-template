@@ -1,19 +1,29 @@
 export const mainReducer = (state, action) => {
-    switch (action.type) {
-      case "INITIAL_DATA":
-        return [...action.data];
-      case "FILTER_LIST":
-        let stateAfterFilter = state.filter(function (item) {
-          return item.title.includes(action.title);
-        });
-        return [...stateAfterFilter];
-      case "UPDATE_LIST":
-        let updatedState = state.map((item) => {
-          if (item.id === action.id) return { ...item, title: action.title };
+  switch (action.type) {
+    case 'INITIAL_STATE':
+      return [...action.data];
+    case 'ADD_FRIEND':
+      const newFriend = action.payload;
+      const afterAddState = state.concat([newFriend]);
+      return [...afterAddState];
+    case 'REMOVE_FRIEND':
+      let id = action.payload;
+      let afterRemoveState = state.filter((friend) => {
+        return friend.id !== id;
+      });
+      return [...afterRemoveState];
+    case 'UPDATE_FRIEND':
+      const friendID = action.payload.id;
+      const { name, age } = action.payload;
+      let updatedState = state.map((item) => {
+        if (item.id === friendID) {
+          return { ...item, name, age };
+        } else {
           return item;
-        });
-        return [...updatedState];
-      default:
-        return [...state];
-    }
-  };
+        }
+      });
+      return [...updatedState];
+    default:
+      return [...state];
+  }
+};
